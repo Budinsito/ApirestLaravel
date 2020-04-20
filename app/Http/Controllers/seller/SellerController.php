@@ -20,12 +20,12 @@ class SellerController extends ApiController
     }
 
    
-    public function show($id)
+    public function show(Seller $seller)
     {
-        $vendedor = Seller::has('products')->findOrFail($id);
+        // $vendedor = Seller::has('products')->findOrFail($id);
        
         // return response()->json(['data' => $vendedor], 200);
-        return $this->showOne($vendedor,200);
+        return $this->showOne($seller,200);
 
     }
 
