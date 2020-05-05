@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\transaccion;
 
 use App\Http\Controllers\ApiController;
+use App\Transaccion;
 use Illuminate\Http\Request;
 
 class TransaccionController extends ApiController
@@ -14,7 +15,8 @@ class TransaccionController extends ApiController
      */
     public function index()
     {
-        //
+        $transaccion = Transaccion::all();
+        return $this->showAll($transaccion);    
     }
 
     /**
@@ -41,21 +43,21 @@ class TransaccionController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Transaccion  $transaccion
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaccion $transaccion)
     {
-        //
+        return $this->showOne($transaccion,200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Transaccion  $transaccion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transaccion $transaccion)
     {
         //
     }
@@ -64,10 +66,10 @@ class TransaccionController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Transaccion  $transaccion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaccion $transaccion)
     {
         //
     }
@@ -75,10 +77,10 @@ class TransaccionController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Transaccion  $transaccion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaccion $transaccion)
     {
         //
     }
