@@ -26,6 +26,7 @@ use SoftDeletes;
     ];
 
 
+// Oculta los campos pivot
     protected $hidden = [
         'pivot'
     ];

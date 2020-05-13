@@ -14,6 +14,10 @@ class Category extends Model
     	'name',
     	'description',
     ];
+    // Oculta los campos pivot
+    protected $hidden = [
+        'pivot'
+    ];
 
     public function products(){
     	return $this->belongsToMany(Product::class);
