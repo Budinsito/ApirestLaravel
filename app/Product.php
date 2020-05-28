@@ -47,6 +47,7 @@ public function transaccions(){
 
     public function categories(){
 
+        //belongsToMany =  Muchos a muchos
         return $this->belongsToMany(Category::class);
     }
 }

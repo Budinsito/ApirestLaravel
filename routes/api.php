@@ -21,6 +21,13 @@ Route::resource('categories.buyers','category\CategoryBuyerController',['only' =
 
 //Products
 Route::resource('products','product\ProductController',['only' => ['index','show']]);
+Route::resource('products.transaccions','product\ProductTransaccion',['only' => ['index']]);
+Route::resource('products.buyers','product\ProductBuyerController',['only' => ['index']]);
+Route::resource('products.categorys','product\ProductCategoryController',['only' => ['index','update','destroy']]);
+Route::resource('products.buyers.transaccions','product\ProductBuyerTransaccionController',['only' => ['store']]);
+
+
+
 //Transactions
 Route::resource('transaccions','transaccion\TransaccionController',['only' => ['index','show']]);
 

@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Support\Facades\Storage;
 
 class SellerProductController extends ApiController
 {
@@ -32,7 +33,8 @@ class SellerProductController extends ApiController
         $this->validate($request, $rules);
         $data = $request->all();
         $data['status'] = Product::PRODUCTO_NO_DISPONIBLE;
-        $data['image'] = '1.jpg';
+        // Aca lo guarda y le da automaticamente un nombre aleatorio al archivo
+        $data['image'] = $request->image->store('');
         $data['seller_id'] = $seller->id;
         $product = Product::create($data);
         return  $this->showOne($product,201);
@@ -70,7 +72,13 @@ class SellerProductController extends ApiController
                 return  $this->errorResponse('Un producto activo al menos debe tener una categoria',409);
             }
         }
-
+        // Verificamos si recibimos un archivo llamado image
+            if ($request->hasfile('image')){
+                //Si recibimos el archivo lo eliminamos
+                Storage::delete($product->image);
+                //Despues actualizamos el nombre del nuevo archivo que vamos a recibir actual
+                $product->image = $request->image->store('');
+            }
         // la funcion isClean()  nos devuelve verdadero o falso si el modelo o el atributo permanecieron igual
 
         if($product->isClean()){
@@ -84,6 +92,8 @@ class SellerProductController extends ApiController
     public function destroy(Seller $seller, Product $product)
     {
         $this->verificarVendedor($seller, $product);
+        //Elimina el archivo fisico de la tabla img
+        Storage::delete($product->image);
         $product->delete();
         return  $this->showOne($product);
     }
