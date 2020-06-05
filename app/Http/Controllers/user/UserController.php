@@ -125,19 +125,21 @@ class UserController extends ApiController
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
          // $user= User::findOrFail($id);
          $user->delete();
          // return response()->json(['data' => $user],200);
          return $this->showOne($user,200);
+    }
 
-
+    public function verify($token){
+        $user = User::where('verification_token', $token)->firstOrFail();
+        // Si existe lo verificamos
+        $user->verified = User::USUARIO_VERIFICADO;
+        // Una vez verificado se remueve el token de verificacion actual
+        $user->verification_token = null;
+        $user->save();
+        return $this->showMessage('La cuenta ha sido verificada',200);
     }
 }

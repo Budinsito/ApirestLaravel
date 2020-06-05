@@ -44,5 +44,6 @@ Route::resource('sellers.buyers','seller\SellerBuyerController',['only' => ['ind
 Route::resource('sellers.products','seller\SellerProductController',['except' => ['create','show','edit']]);
 //Users
 Route::resource('users','user\UserController',['except' => ['create','edit']]);
-
+//Implementacion de la ruta de verificacion de correos
+Route::name('verify')->get('users/verify/{token}', 'user/UserController@verify');
 

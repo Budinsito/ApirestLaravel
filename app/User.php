@@ -34,7 +34,7 @@ protected $dates = ['deleted_at'];
     protected $hidden = [
         'password', 
         'remember_token',
-        'verification_token',
+        // 'verification_token',
     ];
 
     //Mutador que establece la primera letra del nombre es en minusculas

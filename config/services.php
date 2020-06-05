@@ -14,6 +14,10 @@ return [
     |
     */
 
+//Para instalar guzzle se pone en la consola 
+    //composer require guzzlehttp/guzzle
+
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
